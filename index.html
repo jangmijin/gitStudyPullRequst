@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js ie6" lang="ko"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js ie7" lang="ko"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js ie8" lang="ko"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ko"> <!--<![endif]-->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>IXTIN - Products 3</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/common.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<script type="text/javascript" src="js/lib/jquery-1.10.1.min.js"></script>
+	<!--<script type="text/javascript" src="js/lib/jquery.mousewheel.js"></script>-->
+	<script type="text/javascript" src="js/lib/jquery.easing.1.3.js"></script>
+	<!--<script type="text/javascript" src="js/ixtin_ui.js"></script>-->
+	<!--
+	<script type="text/javascript">
+		$(function(){
+			/* http://2nusa.blogspot.kr/2016/10/jquery-mouse-wheel.html */
+			$(window).on('mousewheel',function(e){
+				console.log(event.wheelDelta)
+			})
+		});
+	</script>	
+	-->
+	<script>
+		$(function(){
+			/*윈도우 사이즈*/
+			winsize();
+			$(window).resize(function(){
+				winsize();
+			});
+			function winsize(){
+				var height = $(window).height() - $('#header').outerHeight(true);
+				$('#main').css('height',height);
+			};
+			
+			/*방향키에 따른 움직임 - 좌우측*/
+			visualM();
+			function visualM(){
+				var $target = $('#main .visual');
+				var $box = $target.find('.box');
+				var width = $box.outerWidth(true);
+				var marginL = parseInt($target.css('margin-left'));
+				var idx = 0;
+				var size = $box.length -1;
+				var check = true;
+				/*좌측,우측*/
+				$(window).keydown(function(e){
+					var code = e.keyCode;
+					if(code == 37){
+						if(check){
+							check = false;
+							//좌측
+							if(idx!=0){
+								idx--;
+								$target.stop().animate({'margin-left':'+=' + width*idx},function(){
+									check = true			   
+								});
+								$box.removeClass('on').eq(idx).addClass('on');
+							}else{
+								check = true
+							}
+						}					
+
+					}
+					if(code == 39){
+						if(check){
+							check = false;
+							//우측
+							if(idx!=size){
+								idx++;
+								$target.stop().animate({'margin-left':'-=' + width*idx},function(){
+									check = true			   
+								});
+								$box.removeClass('on').eq(idx).addClass('on');
+							}else{
+								check = true
+							}
+						}
+					}
+				});
+			}
+			/**/
+			boxM();
+			function boxM(){
+				var $target = $('#main .visual');
+				var idx = 0;
+				var size = $target.find('.box.on li').length;
+				//$target.find('.box.on');
+				
+				/*위 아래*/
+				$(window).keydown(function(e){
+					var code = e.keyCode;
+					var $box = $target.find('.box.on');
+					var $ul = $box.find('ul');
+					var $li = $box.find('li');
+					var $list = $box.find('.List');
+					var height = $box.find('li').outerHeight()+2;
+					var size = $li.length;
+					if(code == 38){
+						// 위쪽
+					}
+					if(code == 40){
+						// 아래쪽
+						idx == size-1 ? idx : idx++;
+						$ul.stop().animate({'margin-top':-height*idx});
+						$li.removeClass('on').eq(idx).addClass('on');
+						$list.removeClass('on').eq(idx).addClass('on');
+					}
+				});
+			}
+		});
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<h1><a href="#"><img src="images/gnb/logo.gif" alt="ixtin logo" /></a></h1>
+			<div class="topLink">
+				<ul>
+					<li><a href="#"><img src="images/gnb/login.gif" alt="login" /></a></li>
+					<li><a href="#"><img src="images/gnb/online-shop.gif" alt="online-shop" /></a></li>
+				</ul>
+			</div>
+			<ul class="gnb">
+				<li><a href="#"><img src="images/gnb/gnbMenu1.gif" alt="products" /></a></li>
+				<li><a href="#"><img src="images/gnb/gnbMenu2.gif" alt="news" /></a></li>
+				<li><a href="#"><img src="images/gnb/gnbMenu3.gif" alt="support" /></a></li>
+				<li><a href="#"><img src="images/gnb/gnbMenu4.gif" alt="about ixtin" /></a></li>
+			</ul>
+		</div>
+		<div id="main">
+			<div class="visual">
+				<div class="box on">
+					<ul>
+						<li class="on">
+							<div class="newsDiv">
+								<div class='newsTitle'>제목제목제목제목</div>
+								<div class='newsDate'>2013.07.09 17:00</div>
+								<div class='newsContent'>
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+								</div>
+							</div>
+							<a href="#" class="button"><img src="./images/main/content02/bt.png" /></a>
+						</li>
+						<li>
+							<div class="newsDiv">
+								<div class='newsTitle'>제목제목제목제목</div>
+								<div class='newsDate'>2013.07.09 17:00</div>
+								<div class='newsContent'>
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+								</div>
+							</div>
+							<a href="#" class="button"><img src="./images/main/content02/bt.png" /></a>
+						</li>
+					</ul>
+					<div class="List">
+						<a href="#" class="on"><img src="images/main/icoBtn.png" alt="" /></a>
+						<a href="#"><img src="images/main/icoBtn.png" alt="" /></a>
+					</div>
+				</div>
+				<div class="box">
+					<ul>
+						<li class="on">
+							<img class="contentImage" src="./images/main/content01/con01.png" />
+							<a href="#" class="button"><img src="./images/main/content01/bt01.png" /></a>
+						</li>
+						<li>
+							<img class="contentImage" src="./images/main/content01/con02.png" />
+							<a href="#" class="button"><img src="./images/main/content01/bt02.png" /></a>
+						</li>
+						<li>
+							<img class="contentImage" src="./images/main/content01/con03.png" />
+							<a href="#" class="button"><img src="./images/main/content01/bt03.png" /></a>
+						</li>
+					</ul>
+					<div class="List">
+						<a href="#" class="on"><img src="images/main/icoBtn.png" alt="" /></a>
+						<a href="#"><img src="images/main/icoBtn.png" alt="" /></a>
+						<a href="#"><img src="images/main/icoBtn.png" alt="" /></a>
+					</div>
+				</div>
+				<div class="box">
+					<ul>
+						<li class="on">
+							<div class="newsDiv">
+								<div class='newsTitle'>제목제목제목제목</div>
+								<div class='newsDate'>2013.07.09 17:00</div>
+								<div class='newsContent'>
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+								</div>
+							</div>
+							<a href="#" class="button"><img src="./images/main/content02/bt.png" /></a>
+						</li>
+						<li>
+							<div class="newsDiv">
+								<div class='newsTitle'>제목제목제목제목</div>
+								<div class='newsDate'>2013.07.09 17:00</div>
+								<div class='newsContent'>
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내
+									내용내용내용내내용내용내용내내용내용내용내내용내용내용내
+								</div>
+							</div>
+							<a href="#" class="button"><img src="./images/main/content02/bt.png" /></a>
+						</li>
+					</ul>
+					<div class="List">
+						<a href="#" class="on"><img src="images/main/icoBtn.png" alt="" /></a>
+						<a href="#"><img src="images/main/icoBtn.png" alt="" /></a>
+					</div>
+				</div>
+				<div class="box">
+					<ul>
+						<li class="on">
+							<img class="contentImage" src="./images/main/content03/con01.png" />
+							<a href="#" class="button"><img src="./images/main/content03/bt01.png" /></a>
+						</li>
+						<li>
+							<img class="contentImage" src="./images/main/content03/con02.png" />
+							<a href="#" class="button"><img src="./images/main/content03/bt02.png" /></a>
+						</li>
+					</ul>
+					<div class="List">
+						<a href="#" class="on"><img src="images/main/icoBtn.png" alt="" /></a>
+						<a href="#"><img src="images/main/icoBtn.png" alt="" /></a>
+					</div>
+				</div>
+				<div class="box">
+					<ul>
+						<li class="on">
+							<img class="contentImage" src="./images/main/content04/con01.png" />
+							<a href="#" class="button"><img src="./images/main/content04/bt.png" /></a>
+						</li>
+						<li>
+							<img class="contentImage" src="./images/main/content04/con02.png" />
+							<a href="#" class="button2"><img src="./images/main/content04/bt.png" /></a>
+						</li>
+					</ul>
+					<div class="List">
+						<a href="#" class="on"><img src="images/main/icoBtn.png" alt="" /></a>
+						<a href="#"><img src="images/main/icoBtn.png" alt="" /></a>
+					</div>
+				</div>
+				<div class="box">
+					<ul>
+						<li class="on">
+							<img class="contentImage" src="./images/main/content05/con01.png" />
+							<a href="#" class="button"><img class="button3" src="./images/main/content05/bt.png" /></a>
+						</li>
+					</ul>
+					<div class="List">
+						<a href="#" class="on"><img src="images/main/icoBtn.png" alt="" /></a>
+					</div>
+				</div>
+			</div>
+			<div class="visualBtn">
+				<p class="left"><a href="#"><img src="images/main/left_bt_on.png" alt="" /></a></p>
+				<p class="right on"><a href="#"><img src="images/main/right_bt_on.png" alt="" /></a></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
